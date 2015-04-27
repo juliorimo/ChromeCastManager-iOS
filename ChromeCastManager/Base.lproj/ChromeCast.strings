@@ -1,0 +1,20 @@
+/* 
+  ChromeCast.strings
+  NBCUMaster
+
+  Created by Julio Rivas on 17/4/15.
+  Copyright (c) 2015 accedo.tv. All rights reserved.
+*/
+
+"_BUTTON_CANCEL"="Cancel";
+"_BUTTON_DISCONNECT"="Disconnect";
+"_BUTTON_OK"="Ok";
+
+"_ACTION_SHEET_TITLE_CONNECT"="Connect to Device";
+"_ACTION_SHEET_CONNECTING"="Casting to";
+
+"_ERROR_TITLE"="Error";
+"_ERROR_DEVICES_NOT_FOUND"="Devices not found. Try again later.";
+
+"_ALERT_NOT_CONNECT"="Not Connected";
+"_ALERT_PLEASE_CONNECT_TO_CAST"="Please connect to Cast device";
