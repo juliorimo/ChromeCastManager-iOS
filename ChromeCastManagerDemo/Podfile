@@ -1,0 +1,7 @@
+platform :ios, '7.1'
+
+pod 'google-cast-sdk'
+
+target :ChromeCastManagerDemoTests, :exclusive => true do
+  # pod 'Kiwi'
+end
