@@ -44,6 +44,14 @@ typedef void (^ChromeCastStatus)(BOOL success, NSError *error);
 
 #pragma mark - Play
 
+/**
+ *  Play video
+ *
+ *  @param metadata        ChromeCastMetadata object
+ *  @param view            view where the play button is included
+ *  @param completionBlock response block
+ */
+
 - (void)playVideo:(ChromeCastMetadata *)metadata fromView:(UIView *)view withCompletionBlock:(ChromeCastStatus)completionBlock;
 
 @end
