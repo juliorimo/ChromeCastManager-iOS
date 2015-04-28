@@ -39,7 +39,7 @@
         }else{
             
             if(error){
-                DLog(@"error: %@",error);
+                NSLog(@"error: %@",error);
             }
         }
     }];

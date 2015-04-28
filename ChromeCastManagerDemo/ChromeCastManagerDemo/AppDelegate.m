@@ -22,7 +22,7 @@
     [[ChromeCastManager sharedInstance] initChromeCastManagerWithCompletionBlock:^(BOOL success, NSError *error) {
         
         if(error){
-            DLog(@"%@",error.localizedDescription);
+            NSLog(@"Init chromecast: %@",error.localizedDescription);
         }
         
     }];
