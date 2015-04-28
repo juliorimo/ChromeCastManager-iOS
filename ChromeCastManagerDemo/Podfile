@@ -3,5 +3,5 @@ platform :ios, '7.1'
 pod 'google-cast-sdk'
 
 target :ChromeCastManagerDemoTests, :exclusive => true do
-  # pod 'Kiwi'
+    pod 'google-cast-sdk'
 end

@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ChromeCastManager.h"
 
 @interface AppDelegate ()
 
@@ -16,6 +17,16 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+    //Init
+    [[ChromeCastManager sharedInstance] initChromeCastManagerWithCompletionBlock:^(BOOL success, NSError *error) {
+        
+        if(error){
+            DLog(@"%@",error.localizedDescription);
+        }
+        
+    }];
+    
     // Override point for customization after application launch.
     return YES;
 }

@@ -3,11 +3,12 @@
 //  NBCUMaster
 //
 //  Created by Julio Rivas on 17/4/15.
-//  Copyright (c) 2015 accedo.tv. All rights reserved.
+//  Copyright (c) 2015. All rights reserved.
 //
 
 #import "ChromeCastManager.h"
 #import <GoogleCast/GoogleCast.h>
+#import "ChromeCastMetadata.h"
 
 static NSString * const ChromeCastManagerErrorDomain = @"ChromeCastManager";
 
@@ -38,6 +39,9 @@ static NSString * ChromeCastReceiverAppID;
     
     //Play block
     ChromeCastStatus _playBlock;
+    
+    //Metadata
+    ChromeCastMetadata *_metadata;
 }
 
 #pragma mark - Init
@@ -53,7 +57,7 @@ static NSString * ChromeCastReceiverAppID;
 
 - (void)initChromeCastManager{
     
-    DLog();
+    NSLog(@"initChromeCastManager");
     
     //Scan
     [self startScan];
@@ -82,41 +86,59 @@ static NSString * ChromeCastReceiverAppID;
         //Id
         ChromeCastReceiverAppID = identifier;
         
+        //Block
+        _initBlock = completionBlock;
+        
+        //init
+        [self initChromeCastManager];
+        
     }else{
     
-        //Default
-        ChromeCastReceiverAppID = kGCKMediaDefaultReceiverApplicationID;
+        //Error
+        NSError *error = [self errorWithCode:ChromeCastCodeCredentials andDescription:NSLocalizedStringFromTable(@"_ERROR_INVALID_IDENTIFIER", @"ChromeCast", @"")];
+        
+        //Block
+        completionBlock(NO,error);
     }
-    
-    //Block
-    _initBlock = completionBlock;
-
-    //init
-    [self initChromeCastManager];
 }
 
 #pragma mark - Play
 
-- (void)playVideo:(NSString *)videoUrl fromView:(UIView *)view withCompletionBlock:(ChromeCastStatus)completionBlock{
+- (void)playVideo:(ChromeCastMetadata *)metadata fromView:(UIView *)view withCompletionBlock:(ChromeCastStatus)completionBlock{
 
-    DLog(@"%@",videoUrl);
+    NSLog(@"playVideo: %@",metadata);
     
-    //More than one
-    if([self getScannedDevices].count){
+    //Video url mandatory
+    if(metadata.videoUrl && metadata.videoUrl.length){
+    
+        //Metadata
+        _metadata = metadata;
         
-        //Block
-        _playBlock = completionBlock;
-        
-        //Show devices
-        [self showScannedDevicesInView:view];
-        
+        //More than one
+        if([self getScannedDevices].count){
+            
+            //Block
+            _playBlock = completionBlock;
+            
+            //Show devices
+            [self showScannedDevicesInView:view];
+            
+        }else{
+            
+            //Error
+            NSError *error = [self errorWithCode:ChromeCastCodeDevices andDescription:NSLocalizedStringFromTable(@"_ERROR_DEVICES_NOT_FOUND", @"ChromeCast", @"")];
+            
+            //Error
+            completionBlock(NO,error);
+        }
+    
     }else{
-        
-        //Error
-        NSError *error = [self errorWithCode:ChromeCastDevices andDescription:NSLocalizedStringFromTable(@"_ERROR_DEVICES_NOT_FOUND", @"ChromeCast", @"")];
     
         //Error
-        completionBlock(NO,error);
+        NSError *error = [self errorWithCode:ChromeCastCodeMetadata andDescription:NSLocalizedStringFromTable(@"_ERROR_VIDEO_URL_NOT_FOUND", @"ChromeCast", @"")];
+        
+        //Error
+        completionBlock(NO,error);        
     }
 }
 
@@ -187,14 +209,18 @@ static NSString * ChromeCastReceiverAppID;
             
         }else{
             
-            //Error
-            _playBlock(NO,nil);
+            //Cancel device selection
+            NSError *error = [self errorWithCode:ChromeCastCodeDevices andDescription:NSLocalizedStringFromTable(@"_ERROR_DEVICE_NOT_SELECTED", @"ChromeCast", nil)];
+            
+            //Block
+            _playBlock(NO,error);
         }
     
     }else if(actionSheet.tag==CCActionSheetConnectedDevice){
     
         if (buttonIndex == 1) {  //Disconnect button
-            DLog(@"Disconnecting device:%@", _selectedDevice.friendlyName);
+
+            NSLog(@"Disconnecting device:%@", _selectedDevice.friendlyName);
             
             // New way of doing things: We're not going to stop the applicaton. We're just going
             // to leave it.
@@ -225,12 +251,16 @@ static NSString * ChromeCastReceiverAppID;
     
     if (_selectedDevice == nil){
     
-        _playBlock(NO,nil);
+        //Cancel device selection
+        NSError *error = [self errorWithCode:ChromeCastCodeDevices andDescription:NSLocalizedStringFromTable(@"_ERROR_DEVICE_NOT_SELECTED", @"ChromeCast", nil)];
+        
+        //Block
+        _playBlock(NO,error);
 
         return;
     }
         
-    DLog(@"Selecting device: %@", _selectedDevice.friendlyName);
+    NSLog(@"Selecting device: %@", _selectedDevice.friendlyName);
     
     NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
     self.deviceManager = [[GCKDeviceManager alloc] initWithDevice:_selectedDevice clientPackageName:[info objectForKey:@"CFBundleIdentifier"]];
@@ -240,7 +270,7 @@ static NSString * ChromeCastReceiverAppID;
 
 - (void)deviceDisconnected {
     
-    DLog();
+    NSLog(@"deviceDisconnected");
     
     _mediaControlChannel = nil;
     self.deviceManager = nil;
@@ -251,14 +281,14 @@ static NSString * ChromeCastReceiverAppID;
 
 - (void)deviceManagerDidConnect:(GCKDeviceManager *)deviceManager {
     
-    DLog(@"connected!!");
+    NSLog(@"connected!!");
     
     [self.deviceManager launchApplication:ChromeCastReceiverAppID];
 }
 
 - (void)deviceManager:(GCKDeviceManager *)deviceManager didConnectToCastApplication:(GCKApplicationMetadata *)applicationMetadata sessionID:(NSString *)sessionID launchedApplication:(BOOL)launchedApplication {
     
-    DLog(@"application has launched");
+    NSLog(@"application has launched");
     
     _mediaControlChannel = [[GCKMediaControlChannel alloc] init];
     _mediaControlChannel.delegate = self;
@@ -291,27 +321,26 @@ static NSString * ChromeCastReceiverAppID;
 
 - (void)deviceManager:(GCKDeviceManager *)deviceManager didDisconnectWithError:(GCKError *)error {
 
-    DLog(@"Received notification that device disconnected");
+    NSLog(@"Received notification that device disconnected");
     
-    if (error != nil) {
-        [self showError:error];
-    }
+//    if (error != nil) {
+//        [self showError:error];
+//    }
     
     [self deviceDisconnected];
     
 }
 
 - (void)deviceManager:(GCKDeviceManager *)deviceManager didReceiveStatusForApplication:(GCKApplicationMetadata *)applicationMetadata {
-//    self.applicationMetadata = applicationMetadata;
-    
-    DLog();
+
+    _applicationMetadata = applicationMetadata;
 }
 
 #pragma mark - Scan
 
 - (void)startScan{
 
-    DLog();
+    NSLog(@"startScan");
     
     //Initialize device scanner
     self.deviceScanner = [[GCKDeviceScanner alloc] init];
@@ -322,7 +351,7 @@ static NSString * ChromeCastReceiverAppID;
 
 - (void)stopScan{
     
-    DLog();
+    NSLog(@"stopScan");
 
     [self.deviceScanner stopScan];
 }
@@ -331,46 +360,31 @@ static NSString * ChromeCastReceiverAppID;
 
 - (void)castVideo{
 
-    DLog(@"Cast Video");
+    NSLog(@"Cast Video: %@",_metadata);
     
     //Show alert if not connected
     if (!self.deviceManager || !self.deviceManager.isConnected) {
-        UIAlertView *alert =
-        [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"_ALERT_NOT_CONNECT", @"ChromeCast", nil)
-                                   message:NSLocalizedStringFromTable(@"_ALERT_PLEASE_CONNECT_TO_CAST", @"ChromeCast", nil)
-                                  delegate:nil
-                         cancelButtonTitle:NSLocalizedStringFromTable(@"_BUTTON_OK", @"ChromeCast", nil)
-                         otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"_ALERT_NOT_CONNECT", @"ChromeCast", nil) message:NSLocalizedStringFromTable(@"_ALERT_PLEASE_CONNECT_TO_CAST", @"ChromeCast", nil) delegate:nil cancelButtonTitle:NSLocalizedStringFromTable(@"_BUTTON_OK", @"ChromeCast", nil) otherButtonTitles:nil];
         [alert show];
         return;
     }
     
-    //Define Media metadata EXAMPLE
+    //Define Media metadata
     GCKMediaMetadata *metadata = [[GCKMediaMetadata alloc] init];
+
+    //Title
+    [metadata setString:_metadata.title forKey:kGCKMetadataKeyTitle];
     
-    [metadata setString:@"Big Buck Bunny (2008)" forKey:kGCKMetadataKeyTitle];
-    
-    [metadata setString:@"Big Buck Bunny tells the story of a giant rabbit with a heart bigger than "
-     "himself. When one sunny day three rodents rudely harass him, something "
-     "snaps... and the rabbit ain't no bunny anymore! In the typical cartoon "
-     "tradition he prepares the nasty rodents a comical revenge."
-                 forKey:kGCKMetadataKeySubtitle];
-    
-    [metadata addImage:[[GCKImage alloc]
-                        initWithURL:[[NSURL alloc] initWithString:@"http://commondatastorage.googleapis.com/"
-                                     "gtv-videos-bucket/sample/images/BigBuckBunny.jpg"]
-                        width:480
-                        height:360]];
+    //Subtitle
+    [metadata setString:_metadata.subtitle forKey:kGCKMetadataKeySubtitle];
+
+    //Image
+    if(_metadata.imageUrl && _metadata.imageUrl.length){
+        [metadata addImage:[[GCKImage alloc] initWithURL:[NSURL URLWithString:_metadata.imageUrl] width:_metadata.imageSize.width height:_metadata.imageSize.height]];
+    }
     
     //define Media information
-    GCKMediaInformation *mediaInformation =
-    [[GCKMediaInformation alloc] initWithContentID:
-     @"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-                                        streamType:GCKMediaStreamTypeNone
-                                       contentType:@"video/mp4"
-                                          metadata:metadata
-                                    streamDuration:0
-                                        customData:nil];
+    GCKMediaInformation *mediaInformation = [[GCKMediaInformation alloc] initWithContentID:_metadata.videoUrl streamType:GCKMediaStreamTypeNone contentType:_metadata.videoContentType metadata:metadata streamDuration:0 customData:nil];
     
     //cast video
     [_mediaControlChannel loadMedia:mediaInformation autoplay:TRUE playPosition:0];
@@ -379,22 +393,22 @@ static NSString * ChromeCastReceiverAppID;
 #pragma mark - GCKDeviceScannerListener
 
 - (void)deviceDidComeOnline:(GCKDevice *)device {
-    DLog(@"%@", device.friendlyName);
+    NSLog(@"deviceDidComeOnline %@", device.friendlyName);
 }
 
 - (void)deviceDidGoOffline:(GCKDevice *)device {
-    DLog(@"%@", device.friendlyName);
+    NSLog(@"deviceDidGoOffline %@", device.friendlyName);
 }
 
 - (void)deviceDidChange:(GCKDevice *)device{
-    DLog(@"%@", device.friendlyName);
+    NSLog(@"deviceDidChange %@", device.friendlyName);
 }
 
 #pragma mark - misc
 
 - (void)showError:(NSError *)error {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"_ERROR_TITLE", @"ChromeCast", nil)
-                                                    message:NSLocalizedString(error.description, nil)
+                                                    message:error.localizedDescription
                                                    delegate:nil
                                           cancelButtonTitle:NSLocalizedStringFromTable(@"_BUTTON_OK", @"ChromeCast", nil)
                                           otherButtonTitles:nil];

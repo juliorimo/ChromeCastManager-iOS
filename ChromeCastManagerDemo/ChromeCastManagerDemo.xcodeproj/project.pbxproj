@@ -13,10 +13,15 @@
 		898ED82B1AEE5176003C37C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 898ED8291AEE5176003C37C1 /* Main.storyboard */; };
 		898ED82D1AEE5176003C37C1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 898ED82C1AEE5176003C37C1 /* Images.xcassets */; };
 		898ED8301AEE5176003C37C1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 898ED82E1AEE5176003C37C1 /* LaunchScreen.xib */; };
-		898ED83C1AEE5176003C37C1 /* ChromeCastManagerDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 898ED83B1AEE5176003C37C1 /* ChromeCastManagerDemoTests.m */; };
-		898ED84A1AEE5703003C37C1 /* ChromeCast.strings in Resources */ = {isa = PBXBuildFile; fileRef = 898ED8461AEE5703003C37C1 /* ChromeCast.strings */; };
-		898ED84B1AEE5703003C37C1 /* ChromeCastManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 898ED8491AEE5703003C37C1 /* ChromeCastManager.m */; };
+		898ED8541AEFD418003C37C1 /* ChromeCastManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898ED8531AEFD418003C37C1 /* ChromeCastManagerTests.swift */; };
+		898ED85E1AEFD70A003C37C1 /* ChromeCastManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 898ED8591AEFD70A003C37C1 /* ChromeCastManager.m */; };
+		898ED85F1AEFD70A003C37C1 /* ChromeCastManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 898ED8591AEFD70A003C37C1 /* ChromeCastManager.m */; };
+		898ED8601AEFD70A003C37C1 /* ChromeCastMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 898ED85B1AEFD70A003C37C1 /* ChromeCastMetadata.m */; };
+		898ED8611AEFD70A003C37C1 /* ChromeCastMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 898ED85B1AEFD70A003C37C1 /* ChromeCastMetadata.m */; };
+		898ED8641AEFD71D003C37C1 /* ChromeCast.strings in Resources */ = {isa = PBXBuildFile; fileRef = 898ED8621AEFD71D003C37C1 /* ChromeCast.strings */; };
+		898ED8651AEFD71D003C37C1 /* ChromeCast.strings in Resources */ = {isa = PBXBuildFile; fileRef = 898ED8621AEFD71D003C37C1 /* ChromeCast.strings */; };
 		9E5383789959F9269FDFCE77 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57D4CDE53EC2FC4C57DF4CCC /* libPods.a */; };
+		B5C3C06D8B801356B1BB11BB /* libPods-ChromeCastManagerDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A99269E097A9C90164DEDE2 /* libPods-ChromeCastManagerDemoTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +35,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A99269E097A9C90164DEDE2 /* libPods-ChromeCastManagerDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChromeCastManagerDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C74E2F718F8ED1642044E66 /* Pods-ChromeCastManagerDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChromeCastManagerDemoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChromeCastManagerDemoTests/Pods-ChromeCastManagerDemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		2664B49532FAB83C8A86A998 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		57D4CDE53EC2FC4C57DF4CCC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		898ED81C1AEE5176003C37C1 /* ChromeCastManagerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChromeCastManagerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,12 +51,16 @@
 		898ED82F1AEE5176003C37C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		898ED8351AEE5176003C37C1 /* ChromeCastManagerDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChromeCastManagerDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		898ED83A1AEE5176003C37C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		898ED83B1AEE5176003C37C1 /* ChromeCastManagerDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChromeCastManagerDemoTests.m; sourceTree = "<group>"; };
-		898ED8471AEE5703003C37C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/ChromeCast.strings; sourceTree = "<group>"; };
-		898ED8481AEE5703003C37C1 /* ChromeCastManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChromeCastManager.h; sourceTree = "<group>"; };
-		898ED8491AEE5703003C37C1 /* ChromeCastManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChromeCastManager.m; sourceTree = "<group>"; };
 		898ED84C1AEE5776003C37C1 /* ChromeCastManagerDemo-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ChromeCastManagerDemo-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		898ED8521AEFD417003C37C1 /* ChromeCastManagerDemoTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ChromeCastManagerDemoTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		898ED8531AEFD418003C37C1 /* ChromeCastManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChromeCastManagerTests.swift; sourceTree = "<group>"; };
+		898ED8581AEFD70A003C37C1 /* ChromeCastManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChromeCastManager.h; sourceTree = "<group>"; };
+		898ED8591AEFD70A003C37C1 /* ChromeCastManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChromeCastManager.m; sourceTree = "<group>"; };
+		898ED85A1AEFD70A003C37C1 /* ChromeCastMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChromeCastMetadata.h; sourceTree = "<group>"; };
+		898ED85B1AEFD70A003C37C1 /* ChromeCastMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChromeCastMetadata.m; sourceTree = "<group>"; };
+		898ED8631AEFD71D003C37C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/ChromeCast.strings; sourceTree = "<group>"; };
 		A2C5C5FA6D9DA80020DD0B42 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		AAB9FB98457FEE7384429E8B /* Pods-ChromeCastManagerDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChromeCastManagerDemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChromeCastManagerDemoTests/Pods-ChromeCastManagerDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5C3C06D8B801356B1BB11BB /* libPods-ChromeCastManagerDemoTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				57D4CDE53EC2FC4C57DF4CCC /* libPods.a */,
+				0A99269E097A9C90164DEDE2 /* libPods-ChromeCastManagerDemoTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -128,7 +141,7 @@
 		898ED8381AEE5176003C37C1 /* ChromeCastManagerDemoTests */ = {
 			isa = PBXGroup;
 			children = (
-				898ED83B1AEE5176003C37C1 /* ChromeCastManagerDemoTests.m */,
+				898ED8531AEFD418003C37C1 /* ChromeCastManagerTests.swift */,
 				898ED8391AEE5176003C37C1 /* Supporting Files */,
 			);
 			path = ChromeCastManagerDemoTests;
@@ -137,6 +150,7 @@
 		898ED8391AEE5176003C37C1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				898ED8521AEFD417003C37C1 /* ChromeCastManagerDemoTests-Bridging-Header.h */,
 				898ED83A1AEE5176003C37C1 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -145,9 +159,11 @@
 		898ED8451AEE5703003C37C1 /* ChromeCastManager */ = {
 			isa = PBXGroup;
 			children = (
-				898ED8461AEE5703003C37C1 /* ChromeCast.strings */,
-				898ED8481AEE5703003C37C1 /* ChromeCastManager.h */,
-				898ED8491AEE5703003C37C1 /* ChromeCastManager.m */,
+				898ED8621AEFD71D003C37C1 /* ChromeCast.strings */,
+				898ED8581AEFD70A003C37C1 /* ChromeCastManager.h */,
+				898ED8591AEFD70A003C37C1 /* ChromeCastManager.m */,
+				898ED85A1AEFD70A003C37C1 /* ChromeCastMetadata.h */,
+				898ED85B1AEFD70A003C37C1 /* ChromeCastMetadata.m */,
 			);
 			name = ChromeCastManager;
 			path = ../ChromeCastManager;
@@ -158,6 +174,8 @@
 			children = (
 				A2C5C5FA6D9DA80020DD0B42 /* Pods.debug.xcconfig */,
 				2664B49532FAB83C8A86A998 /* Pods.release.xcconfig */,
+				AAB9FB98457FEE7384429E8B /* Pods-ChromeCastManagerDemoTests.debug.xcconfig */,
+				0C74E2F718F8ED1642044E66 /* Pods-ChromeCastManagerDemoTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -188,9 +206,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 898ED8421AEE5176003C37C1 /* Build configuration list for PBXNativeTarget "ChromeCastManagerDemoTests" */;
 			buildPhases = (
+				6156E81F457053D37B5DDD21 /* Check Pods Manifest.lock */,
 				898ED8311AEE5176003C37C1 /* Sources */,
 				898ED8321AEE5176003C37C1 /* Frameworks */,
 				898ED8331AEE5176003C37C1 /* Resources */,
+				E6FC8ED1B937A650E7999994 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -247,7 +267,7 @@
 				898ED82B1AEE5176003C37C1 /* Main.storyboard in Resources */,
 				898ED8301AEE5176003C37C1 /* LaunchScreen.xib in Resources */,
 				898ED82D1AEE5176003C37C1 /* Images.xcassets in Resources */,
-				898ED84A1AEE5703003C37C1 /* ChromeCast.strings in Resources */,
+				898ED8641AEFD71D003C37C1 /* ChromeCast.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,6 +275,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				898ED8651AEFD71D003C37C1 /* ChromeCast.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +297,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		6156E81F457053D37B5DDD21 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		8E95373CF28B394DF8599C83 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -291,6 +327,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		E6FC8ED1B937A650E7999994 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChromeCastManagerDemoTests/Pods-ChromeCastManagerDemoTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -300,8 +351,9 @@
 			files = (
 				898ED8281AEE5176003C37C1 /* ViewController.m in Sources */,
 				898ED8251AEE5176003C37C1 /* AppDelegate.m in Sources */,
-				898ED84B1AEE5703003C37C1 /* ChromeCastManager.m in Sources */,
+				898ED85E1AEFD70A003C37C1 /* ChromeCastManager.m in Sources */,
 				898ED8221AEE5176003C37C1 /* main.m in Sources */,
+				898ED8601AEFD70A003C37C1 /* ChromeCastMetadata.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,7 +361,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				898ED83C1AEE5176003C37C1 /* ChromeCastManagerDemoTests.m in Sources */,
+				898ED85F1AEFD70A003C37C1 /* ChromeCastManager.m in Sources */,
+				898ED8541AEFD418003C37C1 /* ChromeCastManagerTests.swift in Sources */,
+				898ED8611AEFD70A003C37C1 /* ChromeCastMetadata.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,10 +394,10 @@
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
-		898ED8461AEE5703003C37C1 /* ChromeCast.strings */ = {
+		898ED8621AEFD71D003C37C1 /* ChromeCast.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				898ED8471AEE5703003C37C1 /* Base */,
+				898ED8631AEFD71D003C37C1 /* Base */,
 			);
 			name = ChromeCast.strings;
 			sourceTree = "<group>";
@@ -374,7 +428,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -418,7 +472,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -459,8 +513,10 @@
 		};
 		898ED8431AEE5176003C37C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AAB9FB98457FEE7384429E8B /* Pods-ChromeCastManagerDemoTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -472,14 +528,18 @@
 				INFOPLIST_FILE = ChromeCastManagerDemoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ChromeCastManagerDemoTests/ChromeCastManagerDemoTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ChromeCastManagerDemo.app/ChromeCastManagerDemo";
 			};
 			name = Debug;
 		};
 		898ED8441AEE5176003C37C1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C74E2F718F8ED1642044E66 /* Pods-ChromeCastManagerDemoTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -487,6 +547,7 @@
 				INFOPLIST_FILE = ChromeCastManagerDemoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ChromeCastManagerDemoTests/ChromeCastManagerDemoTests-Bridging-Header.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ChromeCastManagerDemo.app/ChromeCastManagerDemo";
 			};
 			name = Release;

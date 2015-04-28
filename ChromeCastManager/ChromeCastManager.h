@@ -3,15 +3,18 @@
 //  NBCUMaster
 //
 //  Created by Julio Rivas on 17/4/15.
-//  Copyright (c) 2015 accedo.tv. All rights reserved.
+//  Copyright (c) 2015. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "UIKit/UIKit.h"
 
+@class ChromeCastMetadata;
+
 typedef NS_ENUM(NSUInteger, ChromeCastErrorCode) {
     ChromeCastCodeCredentials=0,
-    ChromeCastDevices
+    ChromeCastCodeDevices,
+    ChromeCastCodeMetadata
 };
 
 typedef void (^ChromeCastStatus)(BOOL success, NSError *error);
@@ -41,6 +44,6 @@ typedef void (^ChromeCastStatus)(BOOL success, NSError *error);
 
 #pragma mark - Play
 
-- (void)playVideo:(NSString *)videoUrl fromView:(UIView *)view withCompletionBlock:(ChromeCastStatus)completionBlock;
+- (void)playVideo:(ChromeCastMetadata *)metadata fromView:(UIView *)view withCompletionBlock:(ChromeCastStatus)completionBlock;
 
 @end
